@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": ["node_modules/**", "dist/**", "build/**", "library-snapshots/**"],
+  "jsPlugins": [
+    {
+      "name": "vdk",
+      "specifier": "@vdkit/oxlint-plugin-blueprints"
+    }
+  ],
+  "rules": {
+    "vdk/validate-blueprints": [
+      "error",
+      {
+        "targets": ["library"],
+        "expectedSchemaVersion": "3.0",
+        "requireKind": true,
+        "requireVersion": true,
+        "enforceKebabCaseId": true,
+        "fileExtensions": ["md", "mdx"]
+      }
+    ]
+  }
+}

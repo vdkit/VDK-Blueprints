@@ -28,7 +28,7 @@ VDK Blueprints has been upgraded to full AI Context Schema v2.1.0 compliance, ex
 ### Migration Status
 
 - ✅ **Platform Expansion**: Support for 23+ platforms (Complete)
-- ✅ **Schema Enhancement**: AI Context Schema v2.1.0 metadata (Complete)  
+- ✅ **Schema Enhancement**: AI Context Schema v2.1.0 metadata (Complete)
 - ✅ **Blueprint Updates**: All 109 blueprints enhanced (Complete)
 - ✅ **Documentation**: Platform integration guides updated (Complete)
 - 🔄 **Validation**: Schema validation and testing (In Progress)
@@ -49,7 +49,7 @@ Support expanded to 23+ platforms across multiple categories:
 
 #### AI Assistants (4 platforms)
 - **Claude Code**: Tool integration, memory management, slash commands
-- **Claude Desktop**: MCP integration, rules system, desktop workflows  
+- **Claude Desktop**: MCP integration, rules system, desktop workflows
 - **GitHub Copilot**: Code review, priority system, repository-level guidance
 - **Generic AI**: Universal compatibility for any AI Context Schema platform
 
@@ -166,7 +166,7 @@ maturity: "stable"
 # === AI Context Schema v2.1.0 Enhancements ===
 schemaVersion: "2.1"
 license: "MIT"
-repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 
 # === Relationship Management ===
 requires: ["typescript-modern"]
@@ -176,7 +176,7 @@ supersedes: ["legacy-react-patterns"]
 
 # === Community Metadata ===
 author: "community"
-contributors: ["entro314-labs"]
+contributors: ["vdkit"]
 tags: ["react", "react19", "components", "hooks", "frontend", "technology"]
 discussionUrl: ""
 ---
@@ -196,8 +196,8 @@ The VDK Blueprints repository has undergone automatic migration to AI Context Sc
 
 # 109 blueprints enhanced with:
 - schemaVersion: "2.1"
-- license: "MIT" 
-- repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+- license: "MIT"
+- repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 - Enhanced platform configurations
 - Category-based tags
 ```
@@ -225,7 +225,7 @@ If you're migrating from a pre-v2.1.0 VDK Blueprints installation:
 #### Step 1: Clone or Update Repository
 ```bash
 # Fresh installation
-git clone https://github.com/entro314-labs/VDK-Blueprints.git
+git clone https://github.com/vdkit/VDK-Blueprints.git
 cd VDK-Blueprints
 
 # Update existing installation
@@ -253,10 +253,11 @@ Add to your `CLAUDE.md`:
 - Multi-platform compatibility
 ```
 
-##### Cursor Configuration  
+##### Cursor Configuration
 ```bash
-# Import blueprints to .cursorrules (select relevant ones for your project)
-cp .ai/templates/cursor-integration-template .cursorrules
+# Import blueprints into canonical Cursor rules directory
+mkdir -p .cursor/rules
+# Place curated .mdc rules under .cursor/rules/ (for example: .cursor/rules/index.mdc)
 # Then customize based on your technology stack
 ```
 
@@ -299,7 +300,7 @@ The blueprint schema has been enhanced from basic platform support to comprehens
   "description": "Schema for VDK blueprint files with comprehensive platform support",
   "schemaVersion": "2.1",
   "license": "MIT",
-  "repositoryUrl": "https://github.com/entro314-labs/VDK-Blueprints"
+  "repositoryUrl": "https://github.com/vdkit/VDK-Blueprints"
 }
 ```
 
@@ -342,7 +343,7 @@ Enhanced platform specifications with detailed capability definitions:
 {
   "platformCapabilities": {
     "mcpSupport": "boolean",
-    "toolIntegration": "boolean", 
+    "toolIntegration": "boolean",
     "memoryManagement": "boolean",
     "aiFeatures": "boolean",
     "collaborative": "boolean",
@@ -365,7 +366,7 @@ All 109 blueprints have been automatically enhanced with:
 # Added to all blueprints:
 schemaVersion: "2.1"
 license: "MIT"
-repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 ```
 
 #### Enhanced Platform Configurations
@@ -377,7 +378,7 @@ platforms:
     mcpIntegration: true
     rules: true
     priority: 8
-  zed:                # Added  
+  zed:                # Added
     compatible: true
     mode: "project"
     aiFeatures: true
@@ -405,16 +406,22 @@ tags: ["react", "react19", "components", "hooks", "frontend", "technology"]
 
 ### Enhancement Scripts Used
 
-```bash
-# Script 1: Platform expansion (update-blueprints.js)
-- Added 19 new platform configurations to all blueprints
-- Maintained existing configurations 
-- 100% success rate across 109 blueprints
+The legacy `blueprints/scripts/*` migration utilities are retired.
 
-# Script 2: AI Context Schema v2.1.0 enhancement (enhance-blueprints.js)  
-- Added schemaVersion, license, repositoryUrl to all blueprints
-- Generated category-based tags automatically
-- Enhanced metadata without disrupting existing content
+Current maintenance flow uses the repository contract tooling:
+
+```bash
+# Contract lint over canonical library/** content
+pnpm run lint
+
+# Preview deterministic frontmatter normalization
+pnpm run lint:blueprints:dry
+
+# Apply deterministic normalization
+pnpm run lint:blueprints:fix
+
+# Full local gate used before pushes
+pnpm run check
 ```
 
 ## Validation and Testing
@@ -426,7 +433,7 @@ All blueprints now validate against the enhanced blueprint-schema.json:
 ```bash
 # Validation status for all 109 blueprints
 ✅ Schema compliance: 100%
-✅ Platform definitions: 23 platforms supported  
+✅ Platform definitions: 23 platforms supported
 ✅ AI Context Schema v2.1.0: Full compliance
 ✅ Metadata completeness: All required fields present
 ✅ Relationship integrity: Dependencies properly defined
@@ -535,14 +542,14 @@ git checkout <commit-hash>
 
 #### Validation Tools
 ```bash
-# Validate blueprints after any changes
-node .ai/scripts/validate-blueprints.js
+# Validate current canonical blueprints
+pnpm run lint
 
-# Check specific platform compatibility  
-node .ai/scripts/check-platform.js --platform cursor
+# Run deterministic normalization + lint
+pnpm run lint:fix
 
-# Verify AI Context Schema v2.1.0 compliance
-node .ai/scripts/validate-schema.js --version 2.1
+# Repository gate before push
+pnpm run check
 ```
 
 ## Next Steps
@@ -581,7 +588,7 @@ node .ai/scripts/validate-schema.js --version 2.1
 - **Improved Discoverability**: Better categorization and tagging
 - **Future-Proof Architecture**: Ready for emerging AI platforms
 
-### 📈 Expected Improvements  
+### 📈 Expected Improvements
 
 - **Broader Adoption**: More developers can use VDK Blueprints
 - **Consistent Experience**: Same blueprints work across platforms
@@ -595,7 +602,7 @@ The migration to AI Context Schema v2.1.0 represents a major milestone for VDK B
 
 - **✅ Migration Complete**: All 109 blueprints enhanced successfully
 - **✅ Zero Downtime**: No disruption to existing users
-- **✅ Backward Compatible**: All existing functionality preserved  
+- **✅ Backward Compatible**: All existing functionality preserved
 - **✅ Future Ready**: Platform expansion foundation established
 - **✅ Community Focused**: Enhanced contribution and collaboration tools
 
@@ -603,11 +610,11 @@ The VDK Blueprints ecosystem is now positioned for significant growth, supportin
 
 ### Getting Started
 
-Ready to experience AI Context Schema v2.1.0? 
+Ready to experience AI Context Schema v2.1.0?
 
 1. **📖 Read the [Platform Integration Guide](.ai/docs/platform-integration.md)**
-2. **🚀 Choose your AI platform and get started**  
-3. **💬 Join the [GitHub Discussions](https://github.com/entro314-labs/VDK-Blueprints/discussions)**
+2. **🚀 Choose your AI platform and get started**
+3. **💬 Join the [GitHub Discussions](https://github.com/vdkit/VDK-Blueprints/discussions)**
 4. **🤝 Contribute via [Contributing Guide](.ai/docs/CONTRIBUTING.md)**
 
 Welcome to the future of AI-powered development with VDK Blueprints!

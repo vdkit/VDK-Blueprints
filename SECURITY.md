@@ -24,7 +24,7 @@ We take security seriously. If you discover a security vulnerability, please fol
 ### 🔒 Private Disclosure Process
 
 1. **DO NOT** create a public GitHub issue for security vulnerabilities
-2. **Email us directly** at: [security@entro314-labs.com](mailto:security@entro314-labs.com)
+2. **Email us directly** at: [security@vdkit.com](mailto:security@vdkit.com)
 3. **Include the following information**:
    - Description of the vulnerability
    - Steps to reproduce the issue
@@ -61,7 +61,7 @@ Subject: [SECURITY] Vulnerability Report for VDK Blueprints
 ### ⏱️ Response Timeline
 
 - **Initial Response**: Within 24 hours
-- **Vulnerability Assessment**: Within 72 hours  
+- **Vulnerability Assessment**: Within 72 hours
 - **Fix Timeline**: Based on severity
   - Critical: 1-7 days
   - High: 7-14 days
@@ -189,7 +189,7 @@ We recognize security researchers who help improve our security:
 
 ### 🔐 Security Team
 
-- **Primary Contact**: [security@entro314-labs.com](mailto:security@entro314-labs.com)
+- **Primary Contact**: [security@vdkit.com](mailto:security@vdkit.com)
 - **GPG Key**: Available upon request for encrypted communications
 - **Response Time**: 24 hours for initial response
 
@@ -197,7 +197,7 @@ We recognize security researchers who help improve our security:
 
 For critical security issues requiring immediate attention:
 
-- **Email**: [urgent-security@entro314-labs.com](mailto:urgent-security@entro314-labs.com)
+- **Email**: [urgent-security@vdkit.com](mailto:urgent-security@vdkit.com)
 - **Subject**: `[URGENT SECURITY] Brief description`
 
 ---
@@ -206,6 +206,6 @@ For critical security issues requiring immediate attention:
 
 **Security is a shared responsibility. Thank you for helping keep VDK Blueprints secure!**
 
-[Report a Vulnerability](mailto:security@entro314-labs.com) • [Security Updates](https://github.com/entro314-labs/VDK-Blueprints/security/advisories) • [Best Practices Guide](docs/security-best-practices.md)
+[Report a Vulnerability](mailto:security@vdkit.com) • [Security Updates](https://github.com/vdkit/VDK-Blueprints/security/advisories) • [Best Practices Guide](docs/security-best-practices.md)
 
 </div>

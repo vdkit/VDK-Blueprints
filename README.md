@@ -1,396 +1,115 @@
 # VDK Blueprints
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-2.0.0-blue.svg)](https://github.com/your-org/VDK-Blueprints)
-[![Blueprints](https://img.shields.io/badge/Blueprints-109-green.svg)](#Blueprint-categories)
-[![Platforms](https://img.shields.io/badge/Platforms-23-orange.svg)](#supported-platforms)
+Canonical, curated blueprint library for the VDK ecosystem.
 
-> **Transform generic AI coding assistants into project-aware experts**
+This repository is the source of truth for blueprint content consumed by `VDK-CLI`, surfaced in `VDK-Hub`, and documented in `VDK-Wiki`.
 
-The VDK Blueprints repository is the centralized knowledge base for structured AI development patterns, providing 109+ curated Blueprints that work across multiple AI assistant platforms to deliver consistent, project-specific guidance.
+## What this repository is
 
-## 🚀 Quick Start
+`VDK-Blueprints` stores reusable AI-context blueprints in the AI Context Schema v3 format. Blueprints are designed for deterministic deployment and cross-platform adaptation through the canonical `kind` taxonomy.
 
-### For Developers
+### Canonical kind taxonomy
 
-```bash
-# Clone the repository
-git clone https://github.com/your-org/VDK-Blueprints.git
+Every blueprint must declare one canonical `kind`:
 
-# Navigate to Blueprints directory
-cd VDK-Blueprints/.ai/rules
+- `project-memory`
+- `conditional-rule`
+- `skill`
+- `command`
+- `workflow`
+- `agent`
+- `hook`
+- `mcp-integration`
+- `plugin-distribution`
 
-# Use with your AI assistant (see Platform Integration)
+`category` is optional and used for editorial grouping/browsing.
+
+## Curation model (generic ➜ specific)
+
+The library is intentionally curated to balance broad usefulness with project precision:
+
+- **L0**: universal baseline blueprints
+- **L1**: language-level blueprints
+- **L2**: framework/tool blueprints
+- **L3**: project-context blueprints
+- **L4**: provenance/variant blueprints (excluded from default retrieval)
+
+Default CLI retrieval blends `L0-L3` and excludes `L4` unless explicitly requested (`--include-l4` or provenance audit).
+
+## Repository structure
+
+```text
+library/
+  agents/
+  commands/
+  rules/
+  skills/
+  workflows/
+
+blueprints/
+  (legacy/reference materials used by migration and analysis workflows)
+
+scripts/
+  (migration and maintenance utilities)
 ```
 
-### For AI Assistants
-
-- **Claude Code**: Add `.ai/rules/` to your memory configuration
-- **Cursor**: Import rules to `.cursorrules` file
-- **Windsurf**: Load rules in workspace configuration
-- **GitHub Copilot**: Configure rules in review settings
-
-[📖 **Detailed Setup Guide**](.ai/docs/platform-integration.md)
-
-## 🎯 What This Repository Provides
-
-### 🧠 Intelligent Blueprint System
-
-- **109+ curated Blueprints** covering languages, frameworks, stacks, and tasks
-- **Multi-platform compatibility** with 23+ AI assistants and IDEs including Claude Code, Claude Desktop, Cursor, Windsurf, VS Code family, JetBrains IDEs, Zed, and GitHub Copilot
-- **Project-aware guidance** that understands your specific technology stack
-- **Community-driven** with contribution workflows and templates
-
-### 🏗️ Ecosystem Integration
-
-This repository is part of the **VDK three-tier architecture**:
-
-```
-┌─────────────────┐    ┌───────────────────┐    ┌─────────────────┐
-│   VDK CLI       │◄──►│  Blueprints Repository │◄──►│   VDK Hub       │
-│ (Local Engine)  │    │ (Knowledge Base)  │    │ (Web Platform)  │
-└─────────────────┘    └───────────────────┘    └─────────────────┘
-         │                        │                        │
-         ▼                        ▼                        ▼
-┌─────────────────┐    ┌───────────────────┐    ┌─────────────────┐
-│   IDE Tools     │    │   Git Workflow    │    │   Team Mgmt     │
-│   AI Assistants │    │   Version Control │    │   Analytics     │
-│   Local Config  │    │   Community PRs   │    │   Collaboration │
-└─────────────────┘    └───────────────────┘    └─────────────────┘
-```
-
-- **[VDK CLI](https://github.com/your-org/VDK-CLI)**: Local analysis and Blueprint generation engine
-- **VDK Blueprints** (this repo): Centralized knowledge base and templates
-- **[VDK Hub](https://vdk.tools)**: Web platform for collaboration and management
-
-## 📂 Repository Structure
-
-```
-.ai/
-├── rules/                         # 109 Universal AI Blueprints
-│   ├── core/                      # 4 Fundamental AI behavior patterns
-│   │   ├── 00-agent-behavior.mdc     # AI assistant persona & principles
-│   │   ├── 01-code-quality.mdc       # Code quality guidelines
-│   │   ├── 02-security-practices.mdc # Security best practices
-│   │   └── 03-error-prevention.mdc   # Common error prevention
-│   ├── languages/                 # 6 Programming language patterns
-│   │   ├── typescript-modern.mdc     # Modern TypeScript patterns
-│   │   ├── python3.mdc               # Python 3 best practices
-│   │   ├── swift.mdc                 # Swift development guidelines
-│   │   └── ...                       # Additional languages
-│   ├── technologies/              # 26 Framework/tool patterns
-│   │   ├── react19.mdc               # React 19 patterns
-│   │   ├── nextjs.mdc                # Next.js guidelines
-│   │   ├── supabase.mdc              # Supabase integration
-│   │   └── ...                       # 23 more technologies
-│   ├── stacks/                    # 6 Technology combinations
-│   │   ├── nextjs-supabase.mdc       # Full-stack Next.js + Supabase
-│   │   ├── react-native-mobile.mdc   # React Native mobile patterns
-│   │   └── ...                       # Additional stacks
-│   ├── tasks/                     # 54 Executable development tasks
-│   │   ├── AI-Code-Review.mdc        # AI-powered code review
-│   │   ├── Security-Audit.mdc        # Security audit workflows
-│   │   └── ...                       # 52 more tasks
-│   ├── assistants/                # 7 AI platform configurations
-│   │   ├── claude.mdc                # Claude-specific optimizations
-│   │   ├── cursor.mdc                # Cursor integration patterns
-│   │   └── ...                       # 5 more platforms
-│   └── tools/                     # 3 Development tools
-├── commands/                      # Platform-specific implementations
-│   ├── claude-code/               # Claude Code native commands
-│   ├── cursor/                    # Cursor-specific implementations
-│   ├── windsurf/                  # Windsurf workflows
-│   └── github-copilot/            # GitHub Copilot integrations
-├── schemas/                       # Validation schemas
-├── templates/                     # Contribution templates
-├── scripts/                       # Utility scripts
-└── docs/                         # 📚 Comprehensive documentation
-```
-
-## 🎯 Blueprint Categories
-
-| Category | Count | Description | Examples |
-|----------|--------|-------------|----------|
-| **Core** | 4 | Fundamental AI behavior patterns | Agent behavior, code quality, security |
-| **Languages** | 6 | Programming language guidelines | TypeScript, Python, Swift, C++20 |
-| **Technologies** | 26 | Framework and tool patterns | React 19, Next.js, Supabase, Tailwind |
-| **Stacks** | 6 | Multi-technology combinations | Next.js + Supabase, React Native |
-| **Tasks** | 54 | Executable development workflows | Code review, security audit, refactoring |
-| **Assistants** | 7 | AI platform configurations | Claude, Cursor, Windsurf, Copilot |
-| **Tools** | 3 | Development tool integrations | File operations, command execution |
-
-## 🤖 Supported Platforms
-
-### ✅ Production Ready
-
-| Platform | Status | Features | Integration |
-|----------|--------|----------|------------|
-| **[Claude Code](https://claude.ai/code)** | ✅ Ready | Tool integration, memory management, slash commands | [Setup Guide](.ai/docs/platform-integration.md#claude-code) |
-| **[Claude Desktop](https://claude.ai/desktop)** | ✅ Ready | MCP integration, rules system, context priority | [Setup Guide](.ai/docs/platform-integration.md#claude-desktop) |
-| **[Cursor](https://cursor.sh)** | ✅ Ready | Auto-completion, real-time assistance, file patterns | [Setup Guide](.ai/docs/platform-integration.md#cursor) |
-| **[Windsurf](https://windsurf.sh)** | ✅ Ready | Memory optimization, workspace awareness, XML formatting | [Setup Guide](.ai/docs/platform-integration.md#windsurf) |
-| **[Zed Editor](https://zed.dev)** | ✅ Ready | AI features, collaborative editing, high performance | [Setup Guide](.ai/docs/platform-integration.md#zed) |
-| **[VS Code Family](https://code.visualstudio.com)** | ✅ Ready | VS Code, Insiders, VSCodium support, MCP integration | [Setup Guide](.ai/docs/platform-integration.md#vscode) |
-| **[JetBrains IDEs](https://jetbrains.com)** | ✅ Ready | WebStorm, IntelliJ, PyCharm, PhpStorm + 6 more IDEs | [Setup Guide](.ai/docs/platform-integration.md#jetbrains) |
-| **[GitHub Copilot](https://github.com/features/copilot)** | ✅ Ready | Code review, suggestions, priority system | [Setup Guide](.ai/docs/platform-integration.md#github-copilot) |
+## How this integrates with the ecosystem
 
-### 🔄 Platform Integration Features
+- **ai-context-schema**: defines schema + validation contract
+- **VDK-Blueprints**: curated content source
+- **VDK-CLI**: retrieval, scoring, dedupe, and deployment engine (authoritative runtime semantics)
+- **VDK-Hub**: web distribution + operational surfaces synchronized to CLI semantics
+- **VDK-Wiki**: user and operator documentation synchronized to schema + CLI behavior
 
-- **AI Context Schema v2.1.0 Compliant**: Following the latest universal AI context standard
-- **Cross-Platform Compatibility**: Blueprints work consistently across all platforms
-- **Platform-Specific Optimization**: Tailored instructions for each AI assistant
-- **MCP Integration**: Model Context Protocol support for enhanced AI capabilities
-- **Automatic Blueprint Loading**: Seamless integration with minimal setup
-- **Priority Management**: Smart Blueprint activation based on context
-- **Enhanced Metadata**: Licensing, versioning, and provenance tracking
+### Integration order (required)
 
-## 📖 Documentation
+1. `ai-context-schema`
+2. `VDK-Blueprints`
+3. `VDK-CLI`
+4. `VDK-Hub`
+5. `VDK-Wiki`
 
-### 📚 User Guides
+Blueprint authoring should assume this order and avoid introducing metadata or behavior that cannot be interpreted deterministically by `VDK-CLI`.
 
-- **[Platform Integration Guide](.ai/docs/platform-integration.md)** - Setup and configuration for each AI platform
-- **[Migration Guide](.ai/docs/migration-guide.md)** - Upgrading from legacy versions
+## Using this library through VDK CLI
 
-### 👨‍💻 Developer Guides
+Typical flow:
 
-- **[Contributing Guide](.ai/docs/CONTRIBUTING.md)** - How to contribute Blueprints and improvements
-- **[Blueprint Writing Guide](.ai/docs/Blueprint-writing-guide.md)** - Comprehensive guide to writing effective Blueprints
+1. Search curated blueprints by kind/specificity/platform.
+2. Inspect compatibility and adaptation equivalence.
+3. Deploy selected blueprint into project integrations.
 
-### 🔧 Technical References
+Example commands:
 
-- **[Schema Documentation](.ai/schemas/)** - Blueprint validation schemas and specifications
-- **[Template Library](.ai/templates/)** - Standardized templates for contributions
+- `vdk search --kind skill --platform claude-code`
+- `vdk search --query nextjs --specificity L2`
+- `vdk deploy <blueprint-id>`
 
-## 🚀 Getting Started
+## Contract linting and normalization
 
-### 1. Choose Your Integration Method
+This repository enforces blueprint frontmatter contract checks with Oxlint + `@vdk/oxlint-plugin-blueprints`.
 
-#### Option A: Direct Integration (Recommended)
+- `pnpm run lint` — run contract lint checks across `library/**`
+- `pnpm run lint:blueprints:dry` — preview deterministic normalization changes
+- `pnpm run lint:blueprints:fix` — apply deterministic normalization for frontmatter
+- `pnpm run check` — repository gate (currently lint)
 
-```bash
-# Clone repository
-git clone https://github.com/your-org/VDK-Blueprints.git
+Normalization currently covers:
 
-# Add to your AI assistant
-# - Claude Code: Add .ai/rules/ to CLAUDE.md
-# - Cursor: Import to .cursorrules
-# - Windsurf: Load in workspace
-# - GitHub Copilot: Configure in settings
-```
+- `schemaVersion` alignment (`3.0`)
+- required `kind`
+- required semver `version`
+- `id` normalization to kebab-case
 
-#### Option B: Via VDK CLI (Advanced)
+## Contribution standards
 
-```bash
-# Install CLI (coming soon)
-npm install -g @vdk-cli
+When adding or updating blueprints:
 
-# Generate project-specific Blueprints
-vdk analyze --project-path ./my-project
+1. Keep frontmatter schema-valid (v3.0).
+2. Use canonical `kind` values only.
+3. Preserve cross-platform intent in `platforms.components`.
+4. Avoid duplicate near-identical variants unless provenance requires an `L4` representation.
 
-# Deploy to AI assistants
-vdk deploy --platforms claude-code,cursor
-```
+## License
 
-#### Option C: Via VDK Hub (Team Management)
-
-Visit **[vdk.tools](https://vdk.tools)** for:
-
-- Web-based Blueprint generation
-- Team collaboration features
-- Custom Blueprint management
-- Analytics and insights
-
-### 2. Platform-Specific Setup
-
-<details>
-<summary><strong>Claude Code Setup</strong></summary>
-
-Add to your `CLAUDE.md` file:
-
-```markdown
-# AI Blueprints Integration
-
-Active Blueprints from VDK Blueprints repository:
-- Core behaviors: .ai/rules/core/
-- Language patterns: .ai/rules/languages/
-- Technology guidelines: .ai/rules/technologies/
-- Task workflows: .ai/rules/tasks/
-```
-
-</details>
-
-<details>
-<summary><strong>Cursor Setup</strong></summary>
-
-Create or update your `.cursorrules` file:
-
-```markdown
-# VDK Blueprints - Cursor Integration
-
-## Core Development Principles
-{Include content from .ai/rules/core/}
-
-## Language-Specific Guidelines
-{Include content from .ai/rules/languages/ based on project}
-```
-
-</details>
-
-<details>
-<summary><strong>Windsurf Setup</strong></summary>
-
-In your Windsurf workspace configuration:
-
-```json
-{
-  "aiRules": {
-    "source": ".ai/rules/",
-    "categories": ["core", "languages", "technologies"],
-    "memoryOptimization": true
-  }
-}
-```
-
-</details>
-
-<details>
-<summary><strong>GitHub Copilot Setup</strong></summary>
-
-Configure in your GitHub Copilot settings:
-
-```json
-{
-  "github.copilot.advanced": {
-    "rules": ".ai/rules/",
-    "priority": "high",
-    "reviewIntegration": true
-  }
-}
-```
-
-</details>
-
-## 🤝 Contributing
-
-We welcome contributions from the community! Here's how to get involved:
-
-### 🎯 Quick Contribution Guide
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/new-Blueprint`
-3. **Use our templates**: Copy from `.ai/templates/`
-4. **Follow our standards**: See [Blueprint Writing Guide](.ai/docs/Blueprint-writing-guide.md)
-5. **Submit a pull request**
-
-### 📝 Contribution Types
-
-| Type | Description | Template |
-|------|-------------|----------|
-| **New Blueprint** | Add support for new technology/pattern | [Blueprint Template](.ai/templates/Blueprint-template.mdc) |
-| **Command** | Platform-specific implementation | [Command Template](.ai/templates/command-template.md) |
-| **Documentation** | Improve guides and examples | [Contributing Guide](.ai/docs/CONTRIBUTING.md) |
-| **Bug Fix** | Fix existing Blueprint issues | Standard PR process |
-
-### 🏆 Recognition
-
-Contributors are recognized through:
-
-- Blueprint metadata attribution
-- Community showcase features
-- Release note acknowledgments
-- GitHub contribution graphs
-
-## 📊 Project Statistics
-
-| Metric | Count | Status |
-|--------|-------|--------|
-| **Total Blueprints** | 109 | ✅ Active |
-| **Supported Platforms** | 4 | ✅ Production |
-| **Documentation Pages** | 750+ | ✅ Complete |
-| **Schema Validation** | 100% | ✅ Passing |
-| **Community Contributors** | Growing | 🚀 Join us! |
-
-## 🗺️ Roadmap
-
-### 🎯 Current Focus (Q1 2025)
-
-- [x] **Multi-platform Blueprint refactoring** - Complete ✅
-- [x] **Enhanced documentation** - Complete ✅
-- [ ] **Community onboarding** - In Progress 🔄
-- [ ] **CLI integration** - Planning 📋
-
-### 🚀 Coming Soon (Q2 2025)
-
-- [ ] **Advanced Blueprint generation** - AI-assisted Blueprint creation
-- [ ] **Platform expansion** - Support for new AI assistants
-- [ ] **Enterprise features** - Team management and analytics
-- [ ] **Performance optimization** - Blueprint loading and execution improvements
-
-### 🌟 Future Vision (Q3-Q4 2025)
-
-- [ ] **Intelligent Blueprint adaptation** - Context-aware Blueprint selection
-- [ ] **Cross-project learning** - Blueprint recommendations based on similar projects
-- [ ] **Integration marketplace** - Third-party Blueprint packages
-- [ ] **Advanced analytics** - Usage insights and optimization recommendations
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔗 Related Projects
-
-| Project | Description | Repository |
-|---------|-------------|------------|
-| **VDK CLI** | Local analysis and Blueprint generation engine | [GitHub](https://github.com/your-org/VDK-CLI) |
-| **VDK Hub** | Web platform for collaboration and management | [Website](https://vdk.tools) |
-| **Community Blueprints** | Community-contributed Blueprint packages | [GitHub](https://github.com/your-org/VDK-Community-Blueprints) |
-
-## 🆘 Support
-
-### 📞 Getting Help
-
-- **Documentation**: Start with our [comprehensive guides](.ai/docs/)
-- **GitHub Issues**: [Report bugs or request features](https://github.com/your-org/VDK-Blueprints/issues)
-- **GitHub Discussions**: [Community Q&A and ideas](https://github.com/your-org/VDK-Blueprints/discussions)
-- **Discord Community**: [Join our Discord](https://discord.gg/vibekit) for real-time help
-
-### 🐛 Reporting Issues
-
-When reporting issues, please include:
-
-- AI assistant platform and version
-- Blueprint category and specific file
-- Expected vs actual behavior
-- Steps to reproduce
-- Error messages or logs
-
-### 💡 Suggesting Features
-
-We love new ideas! Please:
-
-- Search existing issues first
-- Use our feature request template
-- Describe the use case and benefit
-- Consider contributing the implementation
-
-## 🌟 Acknowledgments
-
-Special thanks to:
-
-- **Contributors**: Everyone who has contributed Blueprints, documentation, and feedback
-- **AI Assistant Teams**: Claude, Cursor, Windsurf, and GitHub Copilot teams for platform support
-- **Open Source Community**: For inspiration and collaboration
-- **Early Adopters**: For testing and feedback during development
-
----
-
-<div align="center">
-
-**[🚀 Get Started](.ai/docs/platform-integration.md)** •
-**[📚 Documentation](.ai/docs/)** •
-**[🤝 Contribute](.ai/docs/CONTRIBUTING.md)** •
-**[💬 Community](https://github.com/your-org/VDK-Blueprints/discussions)**
-
-**Made with ❤️ by the VDK team and community**
-
-</div>
+MIT — see `LICENSE`.

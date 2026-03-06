@@ -1,0 +1,71 @@
+---
+id: e2e-testing-patterns
+title: E2E Testing Patterns
+description: >-
+  Master end-to-end testing with Playwright and Cypress to build reliable test suites that catch bugs, improve confidence, and enable fast deployment. Use when implementing E2E tests, debugging flaky tests, or establishing testing standards.
+version: 1.0.0
+lastUpdated: '2026-03-02'
+category: skill
+subcategory: testing
+complexity: medium
+scope: project
+audience: developer
+maturity: stable
+schemaVersion: '3.0'
+kind: skill
+specificityLayer: L3
+author: VDK
+tags:
+  - skill
+  - imported
+  - developer-essentials
+  - e2e
+platforms:
+  claude-code:
+    compatible: true
+    enabled: true
+    components:
+      skills:
+        type: claude-skill
+        enabled: true
+        location: .claude/skills/
+        manifests:
+          - name: e2e-testing-patterns
+            file: e2e-testing-patterns.md
+  github-copilot:
+    compatible: true
+    enabled: true
+    components:
+      repo-level:
+        type: copilot-repo
+        enabled: true
+        location: .github/copilot-instructions.md
+requires: []
+suggests: []
+conflicts: []
+supersedes: []
+---
+
+
+# E2E Testing Patterns
+
+## Purpose
+
+Master end-to-end testing with Playwright and Cypress to build reliable test suites that catch bugs, improve confidence, and enable fast deployment. Use when implementing E2E tests, debugging flaky tests, or establishing testing standards.
+
+## Core Coverage
+
+- architecture and implementation patterns for the domain
+- quality, reliability, and maintainability guardrails
+- practical execution guidance for production usage
+
+## Integration Expectations
+
+- preserve integration contracts and existing interfaces
+- surface operational constraints and validation requirements
+- prioritize testability and observability in implementations
+
+## Source Mapping
+
+- staging source: `developer-essentials/skills/e2e-testing-patterns/SKILL.md`
+- canonical id: `e2e-testing-patterns`

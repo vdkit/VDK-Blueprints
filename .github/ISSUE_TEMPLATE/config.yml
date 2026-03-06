@@ -1,13 +1,13 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💬 GitHub Discussions
-    url: https://github.com/entro314-labs/VDK-Blueprints/discussions
+    url: https://github.com/vdkit/VDK-Blueprints/discussions
     about: Ask questions and discuss ideas with the community
   - name: 📚 Documentation
-    url: https://github.com/entro314-labs/VDK-Blueprints/tree/main/.ai/docs
+    url: https://github.com/vdkit/VDK-Blueprints/tree/main/.ai/docs
     about: Read the comprehensive documentation and guides
   - name: 🔒 Security Issues
-    url: https://github.com/entro314-labs/VDK-Blueprints/security
+    url: https://github.com/vdkit/VDK-Blueprints/security
     about: Report security vulnerabilities privately
   - name: 💡 Discord Community
     url: https://discord.gg/vibekit

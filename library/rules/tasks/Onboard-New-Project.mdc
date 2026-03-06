@@ -1,0 +1,185 @@
+---
+id: onboard-new-project
+title: Onboard New Project
+description: >-
+  Analyzes a new project and generates an initial set of VDK rules to onboard it
+  into the VDK ecosystem
+version: 1.2.0
+lastUpdated: '2025-07-25'
+category: rule
+complexity: medium
+scope: component
+audience: developer
+maturity: stable
+platforms:
+  claude-code:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        type: claude-rule
+        enabled: true
+        location: .claude/rules/
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.md
+            paths:
+              - '**/*'
+  cursor:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        type: cursor-rule
+        enabled: true
+        location: .cursor/rules/
+        format: mdc
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.mdc
+            globs:
+              - '**/*'
+            activation: manual
+  windsurf:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        type: windsurf-rule
+        enabled: true
+        location: .windsurf/rules/
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.md
+            globs:
+              - '**/*'
+            mode: glob
+  github-copilot:
+    compatible: true
+    enabled: true
+    components:
+      repo-level:
+        type: copilot-repo
+        enabled: true
+        location: .github/copilot-instructions.md
+  claude-desktop:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.md
+            globs:
+              - '**/*'
+  zed:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.md
+            globs:
+              - '**/*'
+  vscode:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.md
+            globs:
+              - '**/*'
+  generic-ai:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: onboard-new-project
+            file: onboard-new-project.md
+            globs:
+              - '**/*'
+requires: []
+suggests: []
+conflicts: []
+supersedes: []
+contentSections:
+  - universal-guidelines
+  - platform-specific
+  - examples
+  - anti-patterns
+author: community
+contributors:
+  - vdkit
+tags:
+  - project
+  - tasks
+  - onboard
+  - new
+discussionUrl: ''
+schemaVersion: '3.0'
+license: MIT
+repositoryUrl: 'https://github.com/vdkit/VDK-Blueprints'
+kind: conditional-rule
+specificityLayer: L1
+---
+# Onboarding a New Project to VDK
+
+## Objective
+
+To analyze a new or existing codebase and generate a foundational set of VDK rules. This task automates the initial setup, making any project instantly "project-aware" for an AI assistant.
+
+## Core Workflow
+
+This task should be executed by the VDK CLI and will use sequential thinking to perform a comprehensive analysis of the target project.
+
+### Step 1: Project Analysis
+
+- **Analyze `package.json`**:
+  - Identify `dependencies`, `devDependencies`, and `peerDependencies` to determine the technology stack (e.g., React, Next.js, Express).
+  - Parse `scripts` to understand common workflows (e.g., `dev`, `build`, `test`).
+- **Scan Directory Structure**:
+  - Identify key directories like `src`, `app`, `components`, `server`, `api`, `lib`, etc.
+  - Detect common file types (`.ts`, `.tsx`, `.js`, `.py`, etc.) to infer language and patterns.
+- **Look for Configuration Files**:
+  - Check for `tsconfig.json`, `tailwind.config.js`, `vite.config.ts`, `.eslintrc.json`, etc. to understand project configuration.
+
+### Step 2: Generate `01-project-context.mdc`
+
+- Based on the analysis, generate a `01-project-context.mdc` file.
+- This file should include:
+  - A summary of the project's purpose (if a `README.md` exists).
+  - The detected technology stack.
+  - An overview of the directory structure.
+  - A list of important scripts.
+
+### Step 3: Suggest Technology Rules
+
+- Compare the detected technologies against the available rules in `.ai/rules/technologies`.
+- For each match, suggest the corresponding rule be included in the project's VDK configuration.
+- Example: If `next` is a dependency, suggest `NextJS.mdc`.
+
+### Step 4: Create a Summary Report
+
+- Output a summary of the actions taken:
+  - The generated `01-project-context.mdc` file.
+  - A list of suggested technology rules.
+  - Instructions on how to further customize the rules for the project.
+
+## AI Implementation Notes
+
+- Use the `Sequential-Thinking` MCP to structure the analysis.
+- Use the `Memory-MCP` to store findings during the analysis phase.
+- The VDK CLI should provide the file system access needed for the analysis.
+- This task is designed to be a powerful first-run experience for new VDK users.

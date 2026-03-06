@@ -1,0 +1,202 @@
+---
+id: astro4
+title: Astro4 Technology Guidelines
+description: Astro v4+ best practices for building fast content sites and web applications
+version: 2.0.0
+lastUpdated: '2025-07-25'
+category: technology
+complexity: medium
+scope: project
+audience: developer
+maturity: stable
+platforms:
+  claude-code:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        type: claude-rule
+        enabled: true
+        location: .claude/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            paths:
+              - '**/*'
+  cursor:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        type: cursor-rule
+        enabled: true
+        location: .cursor/rules/
+        format: mdc
+        manifests:
+          - name: astro4
+            file: astro4.mdc
+            globs:
+              - '**/*'
+            activation: manual
+  windsurf:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        type: windsurf-rule
+        enabled: true
+        location: .windsurf/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            globs:
+              - '**/*'
+            mode: glob
+  github-copilot:
+    compatible: true
+    enabled: true
+    components:
+      repo-level:
+        type: copilot-repo
+        enabled: true
+        location: .github/copilot-instructions.md
+  claude-desktop:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            globs:
+              - '**/*'
+  zed:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            globs:
+              - '**/*'
+  vscode:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            globs:
+              - '**/*'
+  webstorm:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            globs:
+              - '**/*'
+  generic-ai:
+    compatible: true
+    enabled: true
+    components:
+      rules:
+        enabled: true
+        location: .vdk/rules/
+        manifests:
+          - name: astro4
+            file: astro4.md
+            globs:
+              - '**/*'
+requires: []
+suggests: []
+conflicts: []
+supersedes: []
+contentSections:
+  - universal-guidelines
+  - platform-specific
+  - examples
+  - anti-patterns
+author: community
+contributors:
+  - vdkit
+tags:
+  - technologies
+  - astro4
+discussionUrl: ''
+schemaVersion: '3.0'
+license: MIT
+repositoryUrl: 'https://github.com/vdkit/VDK-Blueprints'
+kind: conditional-rule
+specificityLayer: L1
+---
+# Astro Development Best Practices (v4+)
+
+You are an expert Astro developer, aware of its features up to version 4+.
+Reference: <https://docs.astro.build/en/getting-started/>
+
+## Core Concepts
+
+- Component-Based: Uses `.astro` files blending HTML, scoped CSS, and JS/TS frontmatter.
+- Islands Architecture: Zero-JS by default. Use `client:*` directives (`load`, `idle`, `visible`, `media`, `only`) to hydrate interactive UI components (Islands) client-side.
+- UI Framework Agnostic: Integrates with React, Vue, Svelte, Solid, Preact, Alpine.js, etc.
+- Content-Focused: Built-in Content Collections API for type-safe Markdown/MDX. Astro DB for integrated database solutions.
+- Server-First: Prioritizes Server-Side Rendering (SSR) via Adapters or Static Site Generation (SSG).
+- View Transitions: Built-in support for smooth page transitions and persistent elements using `astro:transitions`.
+
+## Project Structure (Typical)
+
+- `src/pages/`: File-based routing (`.astro`, `.md`, `.mdx`, `.js`, `.ts` for API routes).
+- `src/layouts/`: Reusable page layout components (`.astro`).
+- `src/components/`: Reusable UI components (`.astro` or framework components).
+- `src/content/`: Content Collections (`config.ts`, `posts/`, `docs/`, etc.).
+- `src/styles/`: Global CSS, fonts.
+- `src/middleware.{ts,js}`: For executing code before/after rendering (auth, redirects).
+- `src/env.d.ts`: TypeScript definitions for Astro environment.
+- `public/`: Static assets.
+- `astro.config.mjs` (or `.ts`): Main configuration.
+- `db/config.ts`, `db/seed.ts`: Astro DB configuration and seeding.
+
+## Configuration (`astro.config.mjs`)
+
+- Define `site`, `base`, output mode (`static`/`server`/`hybrid`).
+- Configure Integrations: UI Frameworks (`@astrojs/react`, etc.), Tailwind (`@astrojs/tailwind`), MDX (`@astrojs/mdx`), Sitemap (`@astrojs/sitemap`), Astro DB (`@astrojs/db`).
+- Setup Adapters for deployment (Vercel, Netlify, Cloudflare, Node).
+- Define Vite plugin options.
+- Manage TypeScript settings.
+- Configure Markdown/MDX options (syntax highlighting, remark/rehype plugins).
+- Set up Internationalization (i18n) routing.
+- Enable Experimental Features.
+
+## Routing & Navigation
+
+- Pages: File-based routing in `src/pages/`.
+- Dynamic Routes: `[param].astro`, `[...slug].astro`. Access via `Astro.params`.
+- Endpoints (API Routes): Export `GET`, `POST`, etc. functions from `.js`/`.ts` files in `src/pages/`.
+- Middleware: Intercept requests/responses using `src/middleware.ts` (`defineMiddleware`, `sequence`). Useful for auth, logging, redirects.
+- i18n: Configure locales and routing strategies in `astro.config.mjs`.
+- Prefetch: Control prefetching behavior for faster navigation.
+- View Transitions: Opt-in via `<ViewTransitions />` component and `transition:*` directives for animations and persistence.
+
+## Building UI
+
+- `.astro` Components: Use frontmatter (`---`) for server-side logic, template for HTML/JSX-like syntax, `<style>` for scoped CSS.
+- Props: Define with `interface Props` or `type Props`; access via `Astro.props`.
+- Slots: Default (`<slot/>`) and named (`<slot name="..."/>`).
+- Layouts: `.astro` components typically in `src/layouts/` used via frontmatter `layout: '../../layouts/BaseLayout.astro'`.
+- Styles: Scoped by default. Use `:global()` or `<style is:global>`. Import CSS/SCSS/etc. Use Tailwind integration if configured.
+- Fonts: Local fonts in `src/` or `public/`, Google Fonts via integrations/imports.
+- Syntax Highlighting: Built-in (Shiki) or via integrations.
+- Scripts & Events: `<script>`

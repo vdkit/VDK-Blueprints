@@ -1,0 +1,25 @@
+{
+  "name": "@vdkit/blueprints",
+  "version": "1.0.0",
+  "description": "VDK Blueprints Library",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "node scripts/migrate-blueprints.js",
+    "lint": "oxlint --import-plugin -c .oxlintrc.json \"lint/blueprint-lint-trigger.mjs\"",
+    "lint:blueprints:dry": "vdk-blueprints-fix --target library --ext md --ext mdx",
+    "lint:blueprints:fix": "vdk-blueprints-fix --write --target library --ext md --ext mdx",
+    "lint:fix": "pnpm run lint:blueprints:fix && pnpm run lint",
+    "check": "pnpm run lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@vdkit/oxlint-plugin-blueprints": "^1.0.0",
+    "oxlint": "^1.51.0"
+  },
+  "type": "module"
+}

@@ -71,7 +71,7 @@ lastUpdated: "2025-08-11"
 # === AI Context Schema v2.1.0 Compliance ===
 schemaVersion: "2.1"
 license: "MIT"
-repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 
 # === Categorization ===
 category: "technology"
@@ -91,7 +91,7 @@ supersedes: ["legacy-react-patterns"]
 
 # === Community Metadata ===
 author: "community"
-contributors: ["entro314-labs", "contributor-name"]
+contributors: ["vdkit", "contributor-name"]
 tags: ["react", "react19", "components", "hooks", "frontend", "technology"]
 discussionUrl: ""
 ---
@@ -105,7 +105,7 @@ Tags now automatically include category-based classification:
 # Automatic tag generation based on blueprint properties
 tags: [
   "react",           # Framework-specific
-  "react19",         # Version-specific  
+  "react19",         # Version-specific
   "components",      # Domain-specific
   "hooks",           # Feature-specific
   "frontend",        # Stack-specific
@@ -618,14 +618,14 @@ Every blueprint must pass comprehensive validation:
 
 #### Schema Validation
 ```bash
-# Validate against blueprint-schema.json
-npm run validate-blueprints
+# Contract lint against current blueprint contract
+pnpm run lint
 
-# Check AI Context Schema v2.1.0 compliance
-npm run validate-schema --version 2.1
+# Preview deterministic frontmatter normalization
+pnpm run lint:blueprints:dry
 
-# Verify platform configurations
-npm run validate-platforms
+# Apply normalization and re-run checks
+pnpm run lint:fix
 ```
 
 #### Required Validation Checks
@@ -733,8 +733,8 @@ title: "Example Blueprint"
 id: "example"
 title: "Example Blueprint"
 schemaVersion: "2.1"
-license: "MIT" 
-repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+license: "MIT"
+repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 # ... other required fields
 ---
 ```
@@ -781,7 +781,7 @@ Always start with complete AI Context Schema v2.1.0 metadata:
 ---
 schemaVersion: "2.1"
 license: "MIT"
-repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 # ... complete metadata
 ---
 ```
@@ -797,7 +797,7 @@ Design with all 23+ platforms in mind from the start:
 
 ## Platform-Specific Optimizations
 - Claude Code: Tool integration patterns
-- Cursor: Auto-completion optimizations  
+- Cursor: Auto-completion optimizations
 - Windsurf: Memory-efficient XML tags
 - JetBrains IDEs: Language-specific integrations
 ```
@@ -875,7 +875,7 @@ id: "example"
 title: "Example Blueprint"
 schemaVersion: "2.1"
 license: "MIT"
-repositoryUrl: "https://github.com/entro314-labs/VDK-Blueprints"
+repositoryUrl: "https://github.com/vdkit/VDK-Blueprints"
 # ... complete metadata
 ---
 ```
@@ -922,7 +922,7 @@ conflicts: ["javascript-only-patterns"]
 
 ✅ Good: Platform-adaptive instructions
 ### Claude Code: Use Read tool to analyze existing patterns
-### Cursor: Auto-triggers when editing TypeScript files  
+### Cursor: Auto-triggers when editing TypeScript files
 ### Windsurf: <pattern-optimization>Apply in workspace context</pattern-optimization>
 ```
 
@@ -950,7 +950,7 @@ generic-ai:
 ```yaml
 # Metadata that supports community scaling
 author: "community"
-contributors: ["entro314-labs", "contributor1", "contributor2"]
+contributors: ["vdkit", "contributor1", "contributor2"]
 discussionUrl: ""  # Ready for GitHub Discussions links
 ```
 
@@ -986,7 +986,7 @@ discussionUrl: ""  # Ready for GitHub Discussions links
 Writing effective blueprints for AI Context Schema v2.1.0 requires:
 
 1. **Universal Standards Compliance**: Full AI Context Schema v2.1.0 implementation
-2. **Multi-Platform Excellence**: Optimized for 23+ AI assistants and IDEs  
+2. **Multi-Platform Excellence**: Optimized for 23+ AI assistants and IDEs
 3. **Community Collaboration**: Engaging development and feedback processes
 4. **Ecosystem Integration**: Thoughtful relationship management
 5. **Future-Readiness**: Designed for evolution and growth

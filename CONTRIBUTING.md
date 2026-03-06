@@ -164,7 +164,7 @@ conflicts: []           # Conflicting rules
 #### Test with AI Assistants
 
 1. **Claude Code**: Add rule to CLAUDE.md and test behavior
-2. **Cursor**: Add to .cursorrules and verify auto-activation
+2. **Cursor**: Add to `.cursor/rules/*.mdc` and verify auto-attachment behavior
 3. **Windsurf**: Test memory optimization
 4. **GitHub Copilot**: Verify review integration
 
@@ -281,11 +281,11 @@ conflicts: ["vue3"]                 # Cannot coexist
 // ✅ Good: Clear, focused example
 const UserProfile = ({ userId }: { userId: string }) => {
   const [user, setUser] = useState<User | null>(null);
-  
+
   useEffect(() => {
     fetchUser(userId).then(setUser);
   }, [userId]);
-  
+
   return user ? <UserCard user={user} /> : <LoadingSpinner />;
 };
 
