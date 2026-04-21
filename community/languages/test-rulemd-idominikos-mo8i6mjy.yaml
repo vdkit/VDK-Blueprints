@@ -1,0 +1,61 @@
+---
+id: test-rule-md
+title: test-rule.md
+description: ''
+version: 1.0.0
+category: languages
+platforms:
+  generic:
+    compatible: true
+  claude-code:
+    compatible: true
+  cursor:
+    compatible: true
+  windsurf:
+    compatible: true
+  github-copilot:
+    compatible: true
+  gemini-cli:
+    compatible: true
+  tabnine:
+    compatible: true
+contributedBy: VDK CLI Community
+contributedAt: '2026-04-21T10:50:59.100Z'
+originalFile: test-rule.md
+projectContext:
+  name: publish-workflow-1776768656821
+  framework: generic
+  language: javascript
+  technologies: []
+---
+# Test Rule for AI Assistant
+
+This is a comprehensive rule file for testing the publishing workflow.
+
+## Core Principles
+
+- Use TypeScript for type safety
+- Implement comprehensive error handling
+- Follow clean code principles
+- Write descriptive commit messages
+- Test your code thoroughly
+
+## Code Examples
+
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+```
+
+## Best Practices
+
+1. Always validate user input
+2. Use proper error boundaries
+3. Implement logging for debugging
+4. Follow accessibility guidelines
+5. Optimize for performance
+
+This rule provides comprehensive guidance for TypeScript development.
