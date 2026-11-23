@@ -28,10 +28,10 @@ jobs:
             "CODE_OF_CONDUCT.md"
             "CONTRIBUTING.md"
             "SECURITY.md"
-            ".ai/rules"
-            ".ai/schemas"
-            ".ai/templates"
-            ".ai/docs"
+            "library/rules"
+            "blueprints/schemas"
+            "blueprints/templates"
+            "blueprints/docs"
           )
           
           for file in "${required_files[@]}"; do
@@ -47,10 +47,10 @@ jobs:
       - name: 📊 Count Blueprints
         run: |
           echo "::group::Blueprint Statistics"
-          find .ai/rules -name "*.mdc" -type f | wc -l | xargs echo "📋 Total .mdc files:"
-          find .ai/rules -name "*.md" -type f | wc -l | xargs echo "📄 Total .md files:"
+          find library/rules -name "*.mdc" -type f | wc -l | xargs echo "📋 Total .mdc files:"
+          find library/rules -name "*.md" -type f | wc -l | xargs echo "📄 Total .md files:"
           echo "📁 Directory structure:"
-          tree .ai/rules -I "__pycache__|*.pyc" || ls -la .ai/rules
+          tree library/rules -I "__pycache__|*.pyc" || ls -la library/rules
           echo "::endgroup::"
 
   validate-yaml:
@@ -120,7 +120,7 @@ jobs:
                   return False
           
           # Find all .mdc files
-          mdc_files = list(Path('.ai/rules').rglob('*.mdc'))
+          mdc_files = list(Path('library/rules').rglob('*.mdc'))
           
           if not mdc_files:
               print("⚠️ No .mdc files found")
@@ -178,9 +178,13 @@ jobs:
             "xoxb-[0-9]{10,12}-[0-9]{10,12}-[a-zA-Z0-9]{24}"
           )
           
+          # Example code in blueprints is not a leak: skip shell variable
+          # expansions ("$API_KEY") and all-x placeholders ('sk-xxxxxxxx').
+          not_a_secret="=\s*['\"]([$][A-Za-z_{]|([a-z]+-)?x{8,}['\"])"
+
           found_secrets=false
           for pattern in "${patterns[@]}"; do
-            if grep -r -i -E "$pattern" .ai/ --exclude-dir=node_modules 2>/dev/null; then
+            if grep -r -i -E "$pattern" library/ blueprints/ community/ --exclude-dir=node_modules 2>/dev/null | grep -v -i -E "$not_a_secret"; then
               echo "❌ Potential secret found matching pattern: $pattern"
               found_secrets=true
             fi
@@ -211,7 +215,7 @@ jobs:
           
           supported_platforms = ['claude-code', 'cursor', 'windsurf', 'github-copilot']
           
-          mdc_files = list(Path('.ai/rules').rglob('*.mdc'))
+          mdc_files = list(Path('library/rules').rglob('*.mdc'))
           
           for file_path in mdc_files:
               try:
